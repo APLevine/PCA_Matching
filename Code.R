@@ -33,16 +33,6 @@ plot(controls$PC7,controls$PC8,xlab="Principal Component 7",ylab="Principal Comp
 points(cases$PC7,cases$PC8,col=2,pch=16,cex=1.2)
 #dev.off()
 
-
-# # #Rough tidying of the data to remove far away individuals
-# # keep = which(d$PC1<0.004 & d$PC2<0.01 & d$PC2>-0.02 & d$PC1>0)
-# # e = d[keep,]
-# # cases=e[which(e$COHORT=="SSNS_CASES"),]
-# # controls=e[which(e$COHORT!="SSNS_CASES"),]
-# # plot(controls$PC1,controls$PC2,xlab="Principal Component 1",ylab="Principal Component 2",col=8,cex.lab=1.5)
-# # points(cases$PC1,cases$PC2,col=2,pch=16,cex=1.2)
-
-
 #For each case, calculate distance to each control
 cases_use=cases
 controls_use=controls
@@ -76,7 +66,6 @@ save(store,file="Matched_controls_distances_PC10_v2.RData")
 #If loading from saved
 #load(file="Matched_controls_distances_PC10_v2.RData")
 
-
 max_distance=c()
 for (i in 1:length(store)){
 	max_distance=c(max_distance,max(an(store[[i]][,2])))
@@ -94,8 +83,6 @@ threshold=0.2*max(max_distance)
 	# # #No weighting:
 	# # #temp=c(temp,(min(c(cases_use[,i],controls[,i]))-max(c(cases_use[,i],controls[,i])))^2)
 # # }
-
-
 # # v1=0.09 #distance from range to consider
 # # threshold=v1*sum(temp)
 
